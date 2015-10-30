@@ -11,6 +11,7 @@ public class PostfixCalculator {
 
         System.out.println(compute("5 3 +"));
         System.out.println(compute("12 10 +"));
+        System.out.println(compute("8 2 +"));
     }
 
 
@@ -38,33 +39,33 @@ public class PostfixCalculator {
         Iterator<String> iterator = numberList.iterator();
 
         while (iterator.hasNext()) {
-            String temp = iterator.next();
-            if (temp.matches("[0-9]*")) {
+            String operatorInput = iterator.next();
+            if (operatorInput.matches("[0-9]*")) {
 
                 //If the current item is a number, push it to the stack
-                calculationStack.push(temp);
-            } else if (temp.matches("[+-/*]")) {
+                calculationStack.push(operatorInput);
+            } else if (operatorInput.matches("[+-/*]")) {
 
 
                 //If the current item is an operator, pop off the last two elements of the stack
                 // and calculate them using the operator we are looking at. Then, push the result onto the stack.
 
-                if (temp.equals("+")) {
+                if (operatorInput.equals("+")) {
                     int a = Integer.parseInt(calculationStack.pop());
                     int b = Integer.parseInt(calculationStack.pop());
                     int result = a + b;
                     calculationStack.push(" " + result);
-                } else if (temp.equals("-")) {
+                } else if (operatorInput.equals("-")) {
                     int a = Integer.parseInt(calculationStack.pop());
                     int b = Integer.parseInt(calculationStack.pop());
                     int result = a - b;
                     calculationStack.push(" " + result);
-                } else if (temp.equals("/")) {
+                } else if (operatorInput.equals("/")) {
                     int a = Integer.parseInt(calculationStack.pop());
                     int b = Integer.parseInt(calculationStack.pop());
                     int result = a / b;
                     calculationStack.push(" " + result);
-                } else if (temp.equals("*")) {
+                } else if (operatorInput.equals("*")) {
                     int a = Integer.parseInt(calculationStack.pop());
                     int b = Integer.parseInt(calculationStack.pop());
                     int result = a * b;
